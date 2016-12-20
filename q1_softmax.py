@@ -24,7 +24,8 @@ def softmax(x):
     if len(x.shape)==1:
         m = np.amax(x)
         x = x-m
-        x = np.exp(x)/np.tile(np.sum(np.exp(x),keepdims=True),(1,x.shape[0]))
+        x = np.exp(x)
+        x = x/x.sum()
     else:
         m = np.amax(x,axis=1,keepdims=True)
         x = x-m
@@ -72,3 +73,4 @@ def test_softmax():
 if __name__ == "__main__":
     test_softmax_basic()
     #test_softmax()
+    print softmax(np.array([3,4]))
